@@ -1,0 +1,26 @@
+{% extends "blog/master.html" %}
+ 
+{% block title %}Our Blog{% endblock %}
+
+
+{% block content %}
+<p align="right"><a href="http://localhost:8000/admin/"><input type="button" value="LOGIN"></a></p>
+   <h2 class="page-header">Recents Posts</h2>
+    {% for post in posts %}
+       <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+        <p class="small" style="color: #777777">Published {{ post.publish }} by {{ post.author }}</p>
+        <p>{{ post.body|truncatewords:25|linebreaks }}</p>
+
+    {% endfor %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+    {% include "pagination.html" with page=posts %}
+{% endblock %}
